@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Visualizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin: 20px auto;
+            width: 80%;
+        }
+        .bar-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 300px;
+            border: 1px solid black;
+            margin-top: 20px;
+            background-color: white;
+        }
+        .bar {
+            width: 30px;
+            margin: 2px;
+            background-color: blue;
+            transition: height 0.3s ease-in-out;
+        }
+        button, select {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sorting Visualizer</h1>
+        <button onclick="generateArray()">Generate Array</button>
+        <select id="algorithm">
+            <option value="bubble_sort">Bubble Sort</option>
+            <option value="insertion_sort">Insertion Sort</option>
+            <option value="merge_sort">Merge Sort</option>
+            <option value="quick_sort">Quick Sort</option>
+        </select>
+        <button onclick="startSorting()">Sort</button>
+        <div class="bar-container" id="barContainer"></div>
+    </div>
+
+    <script>
+        let array = [];
+
+        function generateArray() {
+            array = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100) + 1);
+            renderBars();
+        }
+
+        function renderBars() {
+            const container = document.getElementById("barContainer");
+            container.innerHTML = "";
+            array.forEach(value => {
+                const bar = document.createElement("div");
+                bar.classList.add("bar");
+                bar.style.height = `${value * 3}px`;
+                container.appendChild(bar);
+            });
+        }
+
+        async function startSorting() {
+            const algorithm = document.getElementById("algorithm").value;
+
+            const response = await fetch("http://127.0.0.1:5000/sort", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ array, algorithm }),
+            });
+
+            const data = await response.json();
+            const steps = data.steps;
+
+            for (let step of steps) {
+                array = step;
+                renderBars();
+                await new Promise(resolve => setTimeout(resolve, 500)); // Delay for visualization
+            }
+        }
+
+        generateArray(); // Initialize with random array
+    </script>
+</body>
+</html>
