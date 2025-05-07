@@ -12,7 +12,6 @@ Features:
 
 Tech Stack: 
 
-
 Python: Programming language used for the core logic.
 
 Flask: Web framework to create the server-side application.
