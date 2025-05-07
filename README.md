@@ -11,7 +11,6 @@ Features:
 4) Supports a variety of sorting algorithms.
 
 Tech Stack: 
-
 1. Python: Programming language used for the core logic.
 2. Flask: Web framework to create the server-side application.
 3. HTML/CSS/JavaScript: Frontend technologies for rendering the visualization.
