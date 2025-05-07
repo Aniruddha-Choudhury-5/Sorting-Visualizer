@@ -1,4 +1,4 @@
-# Sorting-Visualizer
+# Sorting Visualizer
 
 
 This project is a Sorting Visualizer built with Python and Flask. It allows users to visualize different sorting algorithms in real-time, helping them understand how various sorting methods work.
