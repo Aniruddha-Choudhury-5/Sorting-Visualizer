@@ -12,8 +12,6 @@ Features:
 
 Tech Stack: 
 
-Python: Programming language used for the core logic.
-
-Flask: Web framework to create the server-side application.
-
-HTML/CSS/JavaScript: Frontend technologies for rendering the visualization.
+1. Python: Programming language used for the core logic.
+2. Flask: Web framework to create the server-side application.
+3. HTML/CSS/JavaScript: Frontend technologies for rendering the visualization.
